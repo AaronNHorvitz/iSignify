@@ -1,4 +1,4 @@
-# Microbial Signature Identification App (Gemma 3n Hackathon)
+# Microbial Signature Identification App (iSignify)
 
 This project is a local, privacy-respecting application that identifies unique DNA signatures from microbial genomes. It compares a target genome against a background set and uses the Gemma 3n model to provide human-readable summaries of the results.
 
@@ -25,7 +25,7 @@ The project will be executed in several key phases. For a detailed, actionable c
 ### File Structure
 
 ```
-gemma-signature-app/
+iSignify/
 │
 ├── backend/
 │   ├── src/
@@ -90,13 +90,17 @@ cd gemma-signature-app
 
 ### 2. Set up the backend:
 ```bash
-cd backend
+# Install dependencies from the root directory
 pip install -r requirements.txt
 ```
 
 ### 3. Run the backend server:
 ```bash
-uvicorn app.main:main --reload
+# Navigate into the backend folder
+cd backend
+
+# Run the server from within the backend directory
+uvicorn src.main:app --reload
 ```
 
 ### 4. Open the frontend:
