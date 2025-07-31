@@ -28,7 +28,8 @@ The project will be executed in several key phases. For a detailed, actionable c
 gemma-signature-app/
 │
 ├── backend/
-│   ├── app/
+│   ├── src/
+│   │   ├── __init__.py
 │   │   ├── api/
 │   │   │   └── v1/
 │   │   │       └── analysis_routes.py
@@ -37,10 +38,13 @@ gemma-signature-app/
 │   │   │   └── signature_finder.py
 │   │   ├── models/
 │   │   │   └── schemas.py
-│   │   └── services/
-│   │       └── analysis_service.py
-│   ├── tests/
-│   └── main.py
+│   │   ├── services/
+│   │   │   └── analysis_service.py
+│   │   └── main.py
+│   │
+│   └── tests/
+│       ├── __init__.py
+│       └── test_signature_finder.py
 │
 ├── docs/
 │   ├── PRD.md
@@ -48,8 +52,7 @@ gemma-signature-app/
 │
 ├── frontend/
 │   ├── index.html
-│   ├── css/style.css
-│   └── js/app.js
+│   └── ...
 │
 ├── Dockerfile
 ├── requirements.txt
