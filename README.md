@@ -27,6 +27,9 @@ The project will be executed in several key phases. For a detailed, actionable c
 ```
 iSignify/
 │
+|── data/
+│   └── FASTA_files
+|
 ├── backend/
 │   ├── src/
 │   │   ├── __init__.py
