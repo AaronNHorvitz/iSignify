@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / C extensions
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+pip-wheel-metadata/
+
+# Virtual Environments
+# Never commit your virtual environment folder
+venv/
+env/
+.venv/
+
+# IDE / Editor-specific files
+.vscode/
+.idea/
+
+# Operating System generated files
+.DS_Store
+Thumbs.db
+
+# Local data files
+# As discussed, this will ignore the large FASTA files you download locally
+data/
+
+# Log files
+*.log
+*.log.*
+
+# Environment variables
+# Store sensitive information like API keys here, do not commit
+.env
+.env.*
+
+# Python packaging and distribution
+build/
+dist/
+*.egg

@@ -59,6 +59,7 @@ iSignify/
 │
 ├── Dockerfile
 ├── requirements.txt
+├── .gitignore
 ├── TASKS.md
 └── README.md
 ```
