@@ -65,8 +65,35 @@ iSignify/
 ├── TASKS.md
 └── README.md
 ```
+## 3. How to Contribute Large Data Files
 
-## Backend Class Design
+This project uses Git LFS (Large File Storage) to manage large genome files. To contribute data files, please follow these steps:
+
+**1. Install Git LFS (One-Time Setup)**
+
+If you don't have it already, you need to install the Git LFS extension on your computer. You can download it from the official website:
+* [https://git-lfs.github.com](https://git-lfs.github.com)
+
+After installing, run the following command in your terminal to initialize it:
+```bash
+git lfs install
+```
+
+**2. Add and Commit Files**
+The repository is already configured to know which files to track with LFS. You can now add, commit, and push large FASTA files using standard Git commands.
+
+- Place the files in the `data/FASTA_files/ directory`.
+
+- Run the standard git commands:
+
+```bash
+git add data/FASTA_files/your_large_file.fna
+git commit -m "Add new genome file for testing"
+git push
+```
+Git LFS will automatically handle the upload process correctly.
+
+## 4. Backend Class Design
 
 **`app/core/sequence_parser.py`**
 ```python
@@ -86,7 +113,7 @@ class SignatureFinder:
         """Finds unique, merged signature regions in the target sequences."""
         pass
 ```
-## 3. Getting Started
+## 5. Getting Started
 
 ### 1. Clone the repository:
 ```bash
