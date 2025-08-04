@@ -95,14 +95,14 @@ Git LFS will automatically handle the upload process correctly.
 
 ## 4. Backend Class Design
 
-**`app/core/sequence_parser.py`**
+**`backend/src/core/sequence_parser.py`**
 ```python
 class SequenceParser:
     def parse(self, file_path: str) -> dict[str, str]:
         """Reads a FASTA file and returns a dictionary of headers to sequences."""
 ```
 
-**`app/core/signature_finder.py`**
+**`backend/src/core/signature_finder.py`**
 ```python
 class SignatureFinder:
     def __init__(self, kmer_size: int):
