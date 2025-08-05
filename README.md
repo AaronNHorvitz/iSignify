@@ -43,6 +43,7 @@ iSignify/
 │   │   │   ├── sequence_parser.py
 │   │   │   └── signature_finder.py
 │   │   ├── models/
+│   │   │   ├── __init__.py
 │   │   │   └── schemas.py
 │   │   ├── services/
 │   │   │   └── analysis_service.py
