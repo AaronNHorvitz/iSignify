@@ -139,3 +139,35 @@ uvicorn src.main:app --reload
 ### 4. Open the frontend:
 * Navigate to the `frontend/` directory and open `index.html` in your web browser.
 
+## 6. Running Tests
+
+You can run the unit tests using two methods:
+
+### A. Locally (Recommended for Development)
+
+Ensure you have created and activated a virtual environment and installed the dependencies as described in the "Getting Started" section.
+
+1.  Navigate to the `backend/` directory:
+    ```bash
+    cd backend
+    ```
+2.  Run pytest:
+    ```bash
+    pytest
+    ```
+
+### B. Using Docker (Ensures a Clean Environment)
+
+This method runs the tests inside the same container environment defined in the `Dockerfile`.
+
+1.  Make sure your Docker Desktop is running.
+2.  From the project's root directory (`iSignify/`), build the Docker image:
+    ```bash
+    docker build -t isignify-app .
+    ```
+3.  Run the tests inside a temporary container:
+    ```bash
+    docker run --rm isignify-app pytest
+    ```
+* `--rm` automatically removes the container after the tests are finished.
+* `pytest` overrides the default `CMD` in the Dockerfile, running the test suite instead of the web server.
