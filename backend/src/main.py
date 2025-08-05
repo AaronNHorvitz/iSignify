@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from src.api.v1 import analysis_routes
 
 # Create an instance of the FastAPI class
 app = FastAPI(
@@ -13,3 +14,6 @@ async def read_root():
     A simple root endpoint to confirm the API is running.
     """
     return {"message": "Welcome to the iSignify API!"}
+
+# Include the analysis router in our main application
+app.include_router(analysis_routes.router, prefix="/api/v1")
