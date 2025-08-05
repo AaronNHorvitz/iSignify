@@ -1,3 +1,4 @@
 *.fna filter=lfs diff=lfs merge=lfs -text
 *.fa filter=lfs diff=lfs merge=lfs -text
 *.fasta filter=lfs diff=lfs merge=lfs -text
+data/Processed_FASTA_files/** filter=lfs diff=lfs merge=lfs -text
