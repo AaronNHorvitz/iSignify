@@ -181,3 +181,18 @@ This method runs the tests inside the same container environment defined in the 
     ```
 * `--rm` automatically removes the container after the tests are finished.
 * `pytest` overrides the default `CMD` in the Dockerfile, running the test suite instead of the web server.
+
+## 7. The Team
+
+* **Charles Greenwald, PhD** - *Subject Matter Expert*
+    * Director of Research & Development, Global Biologicals at NCH Corporation
+    * PhD in Genetics, Texas A&M University
+
+* **Aaron Horvitz** - *Developer & Data Scientist*
+    * Statistician (Data Scientist) at RAAS (Research Analytics and Applied Statistics) at the Internal Revenue Service
+    * MS Analytics, Texas A&M University
+    * MS Statistical Data Science, Texas A&M University (In Progress)
+
+### Acknowledgments
+
+This project's code was developed by Aaron Horvitz, with significant pairing and assistance from Google's Gemini model.
