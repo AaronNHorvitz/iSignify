@@ -8,8 +8,8 @@ This document tracks the detailed tasks for the project. Check off items as they
 
 - [x] **Task 1.1:** Implement the `SequenceParser` class in `app/core/sequence_parser.py` to read and parse FASTA files.
 - [x] **Task 1.2:** Implement the `SignatureFinder` class in `app/core/signature_finder.py`, including the `__init__` and `_generate_kmers` methods.
-- [ ] **Task 1.3:** Implement the main `find_unique_signatures` method, including the logic to merge adjacent k-mers into longer regions.
-- [ ] **Task 1.4:** Write basic unit tests in the `tests/` directory for the `SignatureFinder` to validate the core algorithm.
+- [x] **Task 1.3:** Implement the main `find_unique_signatures` method, including the logic to merge adjacent k-mers into longer regions.
+- [x] **Task 1.4:** Write basic unit tests in the `tests/` directory for the `SignatureFinder` to validate the core algorithm.
 
 ---
 
