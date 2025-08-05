@@ -1,0 +1,123 @@
+/* General Body Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Main container for centering content */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+h1 {
+    color: #1a237e;
+    margin: 0;
+}
+
+h2 {
+    color: #283593;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #303f9f;
+}
+
+button:disabled {
+    background-color: #9fa8da;
+    cursor: not-allowed;
+}
+
+
+/* Results Section Styling */
+#results-container {
+    margin-top: 40px;
+    border-top: 2px solid #3f51b5;
+    padding-top: 20px;
+}
+
+#summary {
+    background-color: #e8eaf6;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Use a monospace font for the preformatted text to align columns */
+#signatures-table {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+    border-radius: 4px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+
+/* Helper class to hide/show elements */
+.hidden {
+    display: none;
+}
+
+/* Loader Styling */
+#loader {
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 600;
+    color: #3f51b5;
+}
