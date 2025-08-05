@@ -2,12 +2,17 @@
 
 This guide provides detailed, step-by-step instructions for setting up a local development environment for the iSignify project.
 
+### Prerequisite: Python 3.10+
+
+Ensure you have Python 3.10 or a newer version installed on your system. On many Linux systems, you will need to use the `python3` command instead of `python`.
+
+
 ### Step 1: Create the Virtual Environment
 
 From the root directory of the project (`iSignify/`), run the following command. This will create a `venv` folder in your project, which is safely ignored by Git.
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 ```
 
 ### Step 2: Activate the Environment
