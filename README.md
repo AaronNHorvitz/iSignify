@@ -1,3 +1,5 @@
+How about these updates to the README.md file:
+
 # Microbial Signature Identification App (iSignify)
 
 This project is a local, privacy-respecting application that identifies unique DNA signatures from microbial genomes. It compares a target genome against a background set and uses the Gemma 3n model to provide human-readable summaries of the results.
@@ -51,8 +53,9 @@ iSignify/
 │       └── test_signature_finder.py
 │
 ├── docs/
-│   ├── PRD.md
-│   └── insignia_2009_paper.pdf
+│   ├── DEVELOPMENT_SETUP.md
+│   ├── insignia_2009_paper.pdf
+│   └── prd.md
 │
 ├── frontend/
 │   ├── index.html
@@ -121,11 +124,9 @@ git clone https://github.com/AaronNHorvitz/iSignify.git
 cd iSignify
 ```
 
-### 2. Set up the backend:
-```bash
-# Install dependencies from the root directory
-pip install -r requirements.txt
-```
+### 2.  Set up your local environment:
+For a detailed, step-by-step guide on setting up your Python virtual environment and installing dependencies, please see the [Development Setup Guide](https://github.com/AaronNHorvitz/iSignify/blob/main/docs/DEVELOPMENT_SETUP.md)
+
 
 ### 3. Run the backend server:
 ```bash
