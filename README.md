@@ -46,6 +46,7 @@ iSignify/
 │   │   │   ├── __init__.py
 │   │   │   └── schemas.py
 │   │   ├── services/
+│   │   │   ├── __init__.py
 │   │   │   └── analysis_service.py
 │   │   └── main.py
 │   │
