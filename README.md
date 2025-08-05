@@ -38,6 +38,7 @@ iSignify/
 │   │   ├── api/
 │   │   │   ├── __init__.py
 │   │   │   └── v1/
+│   │   │       ├── __init__.py
 │   │   │       └── analysis_routes.py
 │   │   ├── core/
 │   │   │   ├── __init__.py
