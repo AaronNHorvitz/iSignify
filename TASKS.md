@@ -24,7 +24,7 @@ This document tracks the detailed tasks for the project. Check off items as they
 
 ## Phase 3: Frontend UI
 
-- [ ] **Task 3.1:** Create the `index.html` file with the necessary forms for file uploads, a `k-mer` size input, and a display area for results.
+- [x] **Task 3.1:** Create the `index.html` file with the necessary forms for file uploads, a `k-mer` size input, and a display area for results.
 - [ ] **Task 3.2:** Write the JavaScript logic in `frontend/js/app.js` to handle form submission via the `fetch` API and to dynamically render results returned from the backend.
 - [ ] **Task 3.3:** Add basic styling in `frontend/css/style.css` to make the application clean and user-friendly.
 
