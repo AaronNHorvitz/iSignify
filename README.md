@@ -64,7 +64,8 @@ iSignify/
 │
 ├── frontend/
 │   ├── index.html
-│   └── ...
+│   └── js/
+│       └── app.js
 │
 ├── Dockerfile
 ├── requirements.txt
