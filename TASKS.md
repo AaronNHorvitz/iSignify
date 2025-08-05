@@ -32,7 +32,7 @@ This document tracks the detailed tasks for the project. Check off items as they
 
 ## Phase 4: AI Integration & Finalization
 
-- [ ] **Task 4.1:** Integrate the Gemma 3n model into the `AnalysisService`. The service should pass the signature results to the model and get back a human-readable summary.
+- [x] **Task 4.1:** Integrate the Gemma 3n model into the `AnalysisService`. The service should pass the signature results to the model and get back a human-readable summary.
 - [ ] **Task 4.2:** Finalize and test the `Dockerfile` to ensure the backend can be built and run successfully as a container.
 - [ ] **Task 4.3:** (Optional) Create a `docker-compose.yml` file to make running the full stack (backend and a simple frontend server) easier during development.
 
