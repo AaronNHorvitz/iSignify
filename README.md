@@ -135,6 +135,7 @@ cd iSignify
 ### 2.  Set up your local environment:
 For a detailed, step-by-step guide on setting up your Python virtual environment and installing dependencies, please see the [Development Setup Guide](https://github.com/AaronNHorvitz/iSignify/blob/main/docs/DEVELOPMENT_SETUP.md)
 
+*Note: To enable the AI summary feature, you will need to complete the additional Hugging Face authentication steps at the end of the setup guide.*
 
 ### 3. Run the backend server:
 ```bash

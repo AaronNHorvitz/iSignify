@@ -56,4 +56,26 @@ To ensure your editor recognizes the packages in your virtual environment:
 deactivate
 ```
 
+### Step 6: Authenticate with Hugging Face (for AI Summaries)
 
+To enable the AI summary feature, you need to authenticate with the Hugging Face Hub to download the Gemma model. This is a one-time setup for your machine.
+
+1. Accept the Model Terms:
+    - Make sure you have a free account on [Hugging Face](https://huggingface.co/)
+    - Go to the Gemma model page: [https://huggingface.co/google/gemma-2b](https://huggingface.co/google/gemma-2b)
+    - Click to read and accept the license terms.
+
+2. Create an Access Token:
+    - In your Hugging Face account settings, navigate to the **"Access Tokens"** section.
+    - Create a **"New token"** with a **"read"** role.
+    - Copy the generated token to your clipboard.
+
+3. Create an Access Token:
+    - Make sure your `(venv)` is active.
+    - Run the login commadn in your terminal:
+    ```bash
+    huggingface-cli login
+    ```
+    - Paste your access token when prompted and press Enter.
+
+Once you are logged in, the application will be able to download the Gemma model and generate AI summaries.    
