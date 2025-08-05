@@ -6,7 +6,8 @@ python-multipart
 # Testing
 pytest
 
-# AI model integration (add the specific library for Gemma when ready)
-# e.g., transformers
-# accelerate
-# bitsandbytes
+# AI model integration 
+torch
+transformers
+accelerate
+bitsandbytes
