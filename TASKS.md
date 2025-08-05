@@ -17,8 +17,8 @@ This document tracks the detailed tasks for the project. Check off items as they
 
 - [x] **Task 2.1:** Set up the basic FastAPI application instance in `backend/main.py`.
 - [x] **Task 2.2:** Define the Pydantic models for API requests and responses in `app/models/schemas.py`.
-- [ ] **Task 2.3:** Build the API endpoint in `app/api/v1/analysis_routes.py` to handle file uploads and form data.
-- [ ] **Task 2.4:** Implement the `AnalysisService` in `app/services/analysis_service.py` to connect the API endpoint to the core signature finding logic.
+- [x] **Task 2.3:** Build the API endpoint in `app/api/v1/analysis_routes.py` to handle file uploads and form data.
+- [x] **Task 2.4:** Implement the `AnalysisService` in `app/services/analysis_service.py` to connect the API endpoint to the core signature finding logic.
 
 ---
 
