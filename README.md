@@ -184,8 +184,8 @@ This method runs the tests inside the same container environment defined in the 
 
 ## 7. The Team
 
-* **Charles Greenwald, PhD** - *Subject Matter Expert*
-    * Director of Research & Development, Global Biologicals at NCH Corporation
+* **Charles Greenwald, PhD, MBA** - *Subject Matter Expert*
+    * Vice President, Global Biological Platform at NCH Corporation. 
     * PhD in Genetics, Texas A&M University
 
 * **Aaron Horvitz** - *Developer & Data Scientist*
