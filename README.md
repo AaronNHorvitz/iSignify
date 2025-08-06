@@ -46,26 +46,41 @@ iSignify is more than a bioinformatics tool; it's a platform for tangible, posit
 * **Bioinformatics:** Biopython
 
 ---
+---
 
 ## Getting Started & Live Demo
 
-For a live demonstration of the application, please visit our deployment on Google Cloud Run:
+For a live demonstration of the application, please visit our deployment:
 *[Link to your deployed application will go here]*
 
-For detailed technical setup instructions, please see the [**Development Setup Guide**](docs/DEVELOPMENT_SETUP.md).
+For detailed technical setup instructions, please see the [**Development Setup Guide**](docs/DEVELOPMENT_SETUP.md)[cite: 1].
 
+### How to Test the Live Demo
+
+To make testing easy, we've provided small sample genome files directly in this repository.
+
+**1. Download the Sample Data:**
+* Right-click and "Save Link As..." on each of the files below:
+    * [**Sample_Target_Genome.fna**](https://github.com/AaronNHorvitz/iSignify/blob/main/sample_data/Sample_Target_B_amyloliquefaciens.fna)
+    * [**Sample_Background_1.fna**](https://github.com/AaronNHorvitz/iSignify/blob/main/sample_data/Sample_Background_B_licheniformis.fna)
+
+**2. Run the Analysis:**
+* Go to our live demo URL.
+* For **Target Genome**, upload the `Sample_Target_B_amyloliquefaciens.fna` file.
+* For **Background Genomes**, select both `Sample_Background_B_licheniformis.fna` file. 
+* Click **"Find Signatures"** to see the results!
 ---
 
 ## The Team
 
-* **Charles Greenwald, PhD, MBA** - *Subject Matter Expert*
-    * Vice President, Global Biological Platform at NCH Corporation.
-    * PhD in Genetics, Texas A&M University
+* **Charles Greenwald, PhD, MBA** - *Subject Matter Expert* 
+    * Vice President, Global Biological Platform at NCH Corporation. 
+    * PhD in Genetics, Texas A&M University 
 
-* **Aaron Horvitz** - *Developer & Data Scientist*
-    * Statistician (Data Scientist) at RAAS (Research Analytics and Applied Statistics) at the Internal Revenue Service
-    * MS Analytics, Texas A&M University
-    * MS Statistical Data Science, Texas A&M University (In Progress)
+* **Aaron Horvitz** - *Developer & Data Scientist* 
+    * Statistician (Data Scientist) at RAAS (Research Analytics and Applied Statistics) at the Internal Revenue Service 
+    * MS Analytics, Texas A&M University 
+    * MS Statistical Data Science, Texas A&M University (In Progress) 
 
 ### Acknowledgments
 
@@ -75,4 +90,4 @@ This project's code was developed by Aaron Horvitz, with significant pairing and
 
 ## Future Roadmap
 
-This hackathon project serves as a robust proof-of-concept. Key planned features to evolve iSignify into a production-ready tool include **Automated PCR Primer Design**, **Clade-Based Optimization** for massive scalability, a **Parallel Processing Engine**, and a **Metagenomic Analysis Mode**.
+This hackathon project serves as a robust proof-of-concept. Key planned features include **Automated PCR Primer Design**, **Clade-Based Optimization**, a **Parallel Processing Engine**, and a **Metagenomic Analysis Mode**.
