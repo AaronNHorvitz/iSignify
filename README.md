@@ -46,14 +46,13 @@ iSignify is more than a bioinformatics tool; it's a platform for tangible, posit
 * **Bioinformatics:** Biopython
 
 ---
----
 
 ## Getting Started & Live Demo
 
-For a live demonstration of the application, please visit our deployment:
-*[Link to your deployed application will go here]*
+For a live demonstration of the application, please visit our deployment: 
+[**Web Link To App**](https://fanciful-youtiao-87cf94.netlify.app/)
 
-For detailed technical setup instructions, please see the [**Development Setup Guide**](docs/DEVELOPMENT_SETUP.md)[cite: 1].
+For detailed technical setup instructions, please see the [**Development Setup Guide**](docs/DEVELOPMENT_SETUP.md).
 
 ### How to Test the Live Demo
 
