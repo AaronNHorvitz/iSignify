@@ -38,10 +38,10 @@ This document tracks the detailed tasks for the project. Check off items as they
     - [x] **4.2.2:** Implement merging logic in a new `preprocessor.py` module.
     - [x] **4.2.3:** Refactor `AnalysisService` to use the new pre-processor.
     - [x] **4.2.4:** Write and pass unit tests for the pre-processor.
-- [ ] **Task 4.3:** Make final UI/CSS adjustments:
-    - [ ] **4.3.1:** Add explanatory text to the UI to guide users/judges.
-    - [ ] **4.3.2:** Implement a "Download as CSV" button for the results table.
-    - [ ] **4.3.3:** Adjust CSS to make the LLM summary window larger and scrollable.
+- [x] **Task 4.3:** Make final UI/CSS adjustments:
+    - [x] **4.3.1:** Add explanatory text to the UI to guide users/judges.
+    - [x] **4.3.2:** Implement a "Download as CSV" button for the results table.
+    - [x] **4.3.3:** Adjust CSS to make the LLM summary window larger and scrollable.
 - [ ] **Task 4.4:** Conduct final review with SME (Charles).
 - [ ] **Task 4.5:** Finalize `Dockerfile` & Deploy Backend to Google Cloud Run.
 
