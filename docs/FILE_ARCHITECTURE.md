@@ -11,6 +11,10 @@ iSignify/
 │   ├── FASTA_files
 │   └── Processed_FASTA_files
 |
+|── sample_data/
+│   ├── Sample_Background_B_licheniformis.fna
+│   └── Sample_Target_B_amyloliquefaciens.fna
+|
 ├── backend/
 │   ├── src/
 │   │   ├── __init__.py
