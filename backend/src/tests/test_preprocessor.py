@@ -1,6 +1,7 @@
 import pytest
 import os
 from src.core.preprocessor import FastaPreprocessor
+from Bio import SeqIO
 
 @pytest.fixture
 def fasta_files(tmp_path):
@@ -30,7 +31,6 @@ def test_preprocessor_on_single_contig_file(fasta_files):
     processed_path = preprocessor.process_file(input_path)
 
     # Assert
-    # The path should be the same, as no new file should be created
     assert processed_path == input_path
 
 
@@ -51,18 +51,23 @@ def test_preprocessor_on_multi_contig_file(fasta_files):
         # The path should be different, as a new temp file was created
         assert processed_path != input_path
         
-        # Verify the content of the new file
-        with open(processed_path, 'r') as f:
-            content = f.read()
-            
-            # Should only have one header
-            assert content.count('>') == 1
-            # Should contain the correct number of N-spacers
-            assert content.count('N' * 100) == 2
-            # Should contain the original sequences
-            assert "AAAA" in content
-            assert "CCCC" in content
-            assert "GGGG" in content
+        # === ROBUST VERIFICATION ===
+        # Read the processed file back in using Biopython
+        records = list(SeqIO.parse(processed_path, "fasta"))
+
+        # 1. Assert that there is now only one sequence record
+        assert len(records) == 1
+        
+        # 2. Get the full sequence string
+        final_sequence = str(records[0].seq)
+        
+        # 3. Assert that it contains the correct total number of N's
+        assert final_sequence.count('N') == 200
+
+        # 4. Assert that the original contig sequences are present
+        assert "AAAA" in final_sequence
+        assert "CCCC" in final_sequence
+        assert "GGGG" in final_sequence
 
     finally:
         # Clean up the temporary file created by the preprocessor
