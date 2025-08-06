@@ -13,6 +13,7 @@
 ### Quick Links
 
 * **Live Demo Application:** **[https://fanciful-youtiao-87cf94.netlify.app/](https://fanciful-youtiao-87cf94.netlify.app/)**
+* **Video Overview:** **[Link to YouTube Video Overview](https://www.youtube.com/watch?v=UD_7MTGaDJ4)**
 * **Main GitHub Repository (README):** **[https://github.com/AaronNHorvitz/iSignify](https://github.com/AaronNHorvitz/iSignify)**
 * **Sample Data Files:**
     * [**Sample\_Target\_Genome.fna**](https://github.com/AaronNHorvitz/iSignify/blob/main/sample_data/Sample_Target_B_amyloliquefaciens.fna)
@@ -82,7 +83,7 @@ The project is organized into distinct components, as detailed in our [**File Ar
 
 A key technical challenge in bioinformatics is handling the variability of input data. Draft genomes are often delivered in a "multi-FASTA" format, where a single genome is split into many separate sequences (contigs). Our application was designed to handle this complexity automatically.
 
-As detailed in our [**FASTA Preparation Guide**](https://github.com/AaronNHorvitz/iSignify/blob/main/docs/DATA_PREPARATION_GUIDE.md) (authored by our Subject Matter Expert, Charles Greenwald, PhD), our `FastaPreprocessor` module uses the `Biopython` library to automatically detect and merge these multi-contig files, inserting a standardized spacer of 100 'N's between each contig. This creates a single, continuous sequence that is compatible with our analysis engine. This automated step is a critical feature that significantly improves the application's usability for researchers.
+As detailed in our [**FASTA File Preparation Guide for iSignify**](https://github.com/AaronNHorvitz/iSignify/blob/main/docs/FASTA_PROCESSING_INSTRUCTIONS.md) (authored by our Subject Matter Expert, Charles Greenwald, PhD), our `FastaPreprocessor` module uses the `Biopython` library to automatically detect and merge these multi-contig files, inserting a standardized spacer of 100 'N's between each contig. This creates a single, continuous sequence that is compatible with our analysis engine. This automated step is a critical feature that significantly improves the application's usability for researchers.
 
 ---
 
@@ -99,5 +100,5 @@ iSignify is a platform for tangible, positive change. By dramatically lowering t
 This hackathon project serves as a robust proof-of-concept. Key planned features to evolve iSignify into a production-ready tool include:
 
 * **Automated PCR Primer Design:** Integrate an engine like Primer3 to automatically design and validate optimal PCR primers for any given signature.
-* **Clade-Based Optimization:** Implement a UI and backend logic to allow users to group background genomes into "clades" and intelligently compare against a single representative from each, dramatically improving performance for large-scale analyses.
+* **Optimization:** Implement a UI and backend logic to allow users to group background genomes into "clades" and intelligently compare against a single representative from each, dramatically improving performance for large-scale analyses.
 * **Parallel Processing Engine:** Refactor the core algorithm to use Python's `multiprocessing` module, allowing the analysis to run in parallel across all available CPU cores.
