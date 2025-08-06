@@ -42,12 +42,16 @@ This document tracks the detailed tasks for the project. Check off items as they
     - [x] **4.3.1:** Add explanatory text to the UI to guide users/judges.
     - [x] **4.3.2:** Implement a "Download as CSV" button for the results table.
     - [x] **4.3.3:** Adjust CSS to make the LLM summary window larger and scrollable.
-- [ ] **Task 4.4:** Conduct final review with SME (Charles).
-- [ ] **Task 4.5:** Finalize `Dockerfile` & Deploy Backend to Google Cloud Run.
+- [x] **Task 4.4** Deploy the frontend to Netlify.
+- [x] **Task 4.5:** Conduct final review with SME (Charles).
+- [x] **Task 4.6:** Finalize `Dockerfile` & Deploy Backend to Hugging Face.
 
 ---
+
 ## Phase 5: Submission
 
-- [ ] **Task 5.1:** Write the technical paper and add it to `docs/`.
-- [ ] **Task 5.2:** Record and edit a compelling video demonstration.
-- [ ] **Task 5.3:** Submit all materials to the Kaggle hackathon.
+- [x] **Task 5.1:** Write the technical paper and add it to `docs/`.
+- [x] **Task 5.2:** Create the iSignify log and take a screenshot.
+- [x] **Task 5.3:** Take screenshots of the existing app. 
+- [ ] **Task 5.4:** SME (Charles) Record and edit a compelling video demonstration.
+- [ ] **Task 5.5:** Submit all materials to the Kaggle hackathon.
