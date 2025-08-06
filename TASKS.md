@@ -36,7 +36,7 @@ This document tracks the detailed tasks for the project. Check off items as they
 - [x] **Task 4.1:** Integrate the Gemma model into the `AnalysisService`.
 - [ ] **Task 4.2:** Implement Automated FASTA Pre-processing:
     - [x] **4.2.1:** Add `biopython` to `requirements.txt` and install.
-    - [ ] **4.2.2:** Implement merging logic from the guide in a new `preprocessor.py` module.
+    - [x] **4.2.2:** Implement merging logic from the guide in a new `preprocessor.py` module.
     - [ ] **4.2.3:** Refactor `AnalysisService` to use the new pre-processor.
     - [ ] **4.2.4:** Write unit tests for the pre-processor.
 - [ ] **Task 4.3:** Finalize `Dockerfile` & Deploy Backend to Google Cloud Run.
