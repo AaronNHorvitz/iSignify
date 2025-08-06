@@ -1,193 +1,65 @@
-# Microbial Signature Identification App (iSignify)
+# iSignify: AI-Powered Microbial Signature Discovery
 
-This project is a local, privacy-respecting application that identifies unique DNA signatures from microbial genomes. It compares a target genome against a background set and uses the Gemma 3n model to provide human-readable summaries of the results.
+**iSignify is a rapid, AI-powered bioinformatics tool designed to pinpoint unique genetic 'fingerprints' in microbial genomes. It empowers scientists to accelerate diagnostics, enhance biosecurity, and monitor environmental health—all from a private, offline-first application.**
 
-## 1. Project Roadmap
-
-The project will be executed in several key phases. For a detailed, actionable checklist of all tasks, please see the `TASKS.md` file in the project repository.
-
-* **Phase 1:** Backend Core Logic Development
-* **Phase 2:** Backend API Implementation
-* **Phase 3:** Frontend UI Construction
-* **Phase 4:** AI Model Integration and Finalization
-* **Phase 5:** Final Review and Hackathon Submission
+This project was developed for the **Google - The Gemma 3n Impact Challenge**.
 
 ---
 
-## 2. Architecture & Design
+## The Problem
 
-### Technology Stack
+Identifying unique DNA sequences that act as a definitive marker for a specific bacterium is a cornerstone of modern biology. However, this process is computationally intensive and traditionally requires significant bioinformatics expertise, access to high-performance computing clusters, and a multi-step workflow involving several different tools. This creates a barrier for researchers in the field, slowing down critical work in diagnostics and environmental science.
+
+## Our Solution: iSignify
+
+iSignify streamlines this complex process into a single, user-friendly web application. By leveraging an efficient, on-the-fly k-mer comparison algorithm and the interpretive power of Google's Gemma model, iSignify allows any scientist to upload raw genome files and receive a clear, actionable list of unique DNA signatures in minutes, not weeks.
+
+The application runs locally, ensuring that sensitive genomic data remains private and secure, and is functional even without an internet connection—a critical feature for fieldwork and use in low-connectivity regions.
+
+### Key Features
+* **On-the-Fly Signature Discovery:** A robust Python backend compares a target genome against multiple background genomes to find unique sequences without the need for a pre-computed database.
+* **Automated FASTA Pre-processing:** Seamlessly handles and merges complex multi-contig FASTA files into a compatible format automatically, simplifying the user's workflow.
+* **AI-Powered Interpretation:** Uses a local Gemma model to translate complex numerical results into human-readable summaries, making the data immediately understandable.
+* **Simple Web Interface:** An intuitive UI allows for easy parameter setting, file uploading, and visualization of results.
+* **Downloadable Results:** Exports the final list of signatures to a CSV file for use in downstream applications like PCR primer design.
+* **Private & Offline-First:** The entire analysis runs on the user's machine, ensuring data privacy and offline functionality.
+
+---
+
+## Real-World Impact & Future Applications
+
+iSignify is more than a bioinformatics tool; it's a platform for tangible, positive change. By dramatically lowering the barrier to entry for genomic analysis, it can accelerate progress in numerous fields:
+
+* **Personalized Medicine & Diagnostics:** Rapidly identify unique genetic markers for emerging pathogens from patient samples (e.g., blood tests), leading to faster diagnostic tests for diseases.
+* **Biosecurity & Threat Detection:** Quickly generate signatures for known bioweapons or emerging biological threats, allowing for rapid field detection in the event of a strike.
+* **Environmental Monitoring:** Detect the presence of specific bacteria (e.g., pollutants or beneficial microbes) in soil and water samples to monitor ecosystem health.
+* **Food Safety & Agriculture:** Identify unique strains of foodborne pathogens like *Salmonella* or *E. coli* to trace outbreaks, or find markers for crop diseases.
+* **Synthetic Biology:** Verify and track custom-engineered microbes by identifying their unique, synthetic DNA barcodes.
+
+---
+
+## Technology Stack
 * **Backend:** Python 3.10+, FastAPI
-* **Frontend:** HTML, CSS, JavaScript (no framework)
-* **AI Model:** Gemma 3n (running locally)
+* **Frontend:** HTML, CSS, JavaScript
+* **AI Model:** Google Gemma
 * **Containerization:** Docker
+* **Bioinformatics:** Biopython
 
-### File Structure
+---
 
-```
-iSignify/
-│
-|── data/
-│   ├── FASTA_files
-│   └── Processed_FASTA_files
-|
-├── backend/
-│   ├── src/
-│   │   ├── __init__.py
-│   │   ├── api/
-│   │   │   ├── __init__.py
-│   │   │   └── v1/
-│   │   │       ├── __init__.py
-│   │   │       └── analysis_routes.py
-│   │   ├── core/
-│   │   │   ├── __init__.py
-│   │   │   ├── preprocessor.py
-│   │   │   ├── sequence_parser.py
-│   │   │   └── signature_finder.py
-│   │   ├── models/
-│   │   │   ├── __init__.py
-│   │   │   └── schemas.py
-│   │   ├── services/
-│   │   │   ├── __init__.py
-│   │   │   └── analysis_service.py
-│   │   └── main.py
-│   │
-│   └── tests/
-│       ├── __init__.py
-│       ├── test_preprocessor.py
-│       ├── test_sequence_parser.py
-│       └── test_signature_finder.py
-│
-├── docs/
-│   ├── DEVELOPMENT_SETUP.md
-│   ├── FASTA_PROCESSING_INSTRUCTIONS.md
-│   ├── PRD.md
-│   └── insignia_2009_paper.pdf
-│
-├── frontend/
-│   ├── index.html
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       └── app.js
-│ 
-├── Dockerfile
-├── requirements.txt
-├── .gitignore
-├── .gitattributes
-├── TASKS.md
-└── README.md
-```
-## 3. How to Contribute Large Data Files
+## Getting Started & Live Demo
 
-This project uses Git LFS (Large File Storage) to manage large genome files. To contribute data files, please follow these steps:
+For a live demonstration of the application, please visit our deployment on Google Cloud Run:
+*[Link to your deployed application will go here]*
 
-**1. Install Git LFS (One-Time Setup)**
+For detailed technical setup instructions, please see the [**Development Setup Guide**](docs/DEVELOPMENT_SETUP.md).
 
-If you don't have it already, you need to install the Git LFS extension on your computer. You can download it from the official website:
-* [https://git-lfs.github.com](https://git-lfs.github.com)
+---
 
-After installing, run the following command in your terminal to initialize it:
-```bash
-git lfs install
-```
-
-**2. Add and Commit Files**
-The repository is already configured to know which files to track with LFS. You can now add, commit, and push large FASTA files using standard Git commands.
-
-- Place the files in the `data/FASTA_files/ directory`.
-
-- Run the standard git commands:
-
-```bash
-git add data/FASTA_files/your_large_file.fna
-git commit -m "Add new genome file for testing"
-git push
-```
-Git LFS will automatically handle the upload process correctly.
-
-## 4. Backend Class Design
-
-**`backend/src/core/sequence_parser.py`**
-```python
-class SequenceParser:
-    def parse(self, file_path: str) -> dict[str, str]:
-        """Reads a FASTA file and returns a dictionary of headers to sequences."""
-```
-
-**`backend/src/core/signature_finder.py`**
-```python
-class SignatureFinder:
-    def __init__(self, kmer_size: int):
-        """Initializes the finder with a k-mer size."""
-        pass
-
-    def find_unique_signatures(self, target_sequences: dict, background_sequences: dict) -> list[dict]:
-        """Finds unique, merged signature regions in the target sequences."""
-        pass
-```
-## 5. Getting Started
-
-### 1. Clone the repository:
-```bash
-git clone https://github.com/AaronNHorvitz/iSignify.git
-cd iSignify
-```
-
-### 2.  Set up your local environment:
-For a detailed, step-by-step guide on setting up your Python virtual environment and installing dependencies, please see the [Development Setup Guide](https://github.com/AaronNHorvitz/iSignify/blob/main/docs/DEVELOPMENT_SETUP.md)
-
-*Note: To enable the AI summary feature, you will need to complete the additional Hugging Face authentication steps at the end of the setup guide.*
-
-### 3. Run the backend server:
-```bash
-# Navigate into the backend folder
-cd backend
-
-# Run the server from within the backend directory
-uvicorn src.main:app --reload
-```
-
-### 4. Open the frontend:
-* Navigate to the `frontend/` directory and open `index.html` in your web browser.
-
-## 6. Running Tests
-
-You can run the unit tests using two methods:
-
-### A. Locally (Recommended for Development)
-
-Ensure you have created and activated a virtual environment and installed the dependencies as described in the "Getting Started" section.
-
-1.  Navigate to the `backend/` directory:
-    ```bash
-    cd backend
-    ```
-2.  Run pytest:
-    ```bash
-    pytest
-    ```
-
-### B. Using Docker (Ensures a Clean Environment)
-
-This method runs the tests inside the same container environment defined in the `Dockerfile`.
-
-1.  Make sure your Docker Desktop is running.
-2.  From the project's root directory (`iSignify/`), build the Docker image:
-    ```bash
-    docker build -t isignify-app .
-    ```
-3.  Run the tests inside a temporary container:
-    ```bash
-    docker run --rm isignify-app pytest
-    ```
-* `--rm` automatically removes the container after the tests are finished.
-* `pytest` overrides the default `CMD` in the Dockerfile, running the test suite instead of the web server.
-
-## 7. The Team
+## The Team
 
 * **Charles Greenwald, PhD, MBA** - *Subject Matter Expert*
-    * Vice President, Global Biological Platform at NCH Corporation. 
+    * Vice President, Global Biological Platform at NCH Corporation.
     * PhD in Genetics, Texas A&M University
 
 * **Aaron Horvitz** - *Developer & Data Scientist*
@@ -201,18 +73,7 @@ This project's code was developed by Aaron Horvitz, with significant pairing and
 
 ---
 
-## Future Roadmap (Post-Hackathon)
+## Future Roadmap
 
-This hackathon project serves as a robust proof-of-concept. The following features are planned to evolve iSignify into a production-ready tool for researchers.
+This hackathon project serves as a robust proof-of-concept. Key planned features to evolve iSignify into a production-ready tool include **Automated PCR Primer Design**, **Clade-Based Optimization** for massive scalability, a **Parallel Processing Engine**, and a **Metagenomic Analysis Mode**.
 
-* **Automated PCR Primer Design:**
-    Integrate a bioinformatics engine like Primer3 to automatically design and validate optimal PCR primers for any given signature, complete with data on melting temperatures, GC content, and potential hairpins.
-
-* **Clade-Based Optimization:**
-    To dramatically improve performance for large-scale analyses, a UI and backend logic will be developed to allow users to group background genomes into "clades" (e.g., by genus or family). The analysis will then intelligently compare a target against a single representative from each clade, reducing computation time exponentially.
-
-* **Parallel Processing Engine:**
-    The core signature finding algorithm will be refactored to use Python's `multiprocessing` module. This will allow the analysis to run in parallel across all available CPU cores, providing a significant speedup for large genomes.
-
-* **Metagenomic Analysis Mode:**
-    A future research goal is to develop a new analysis mode capable of identifying novel, unknown organisms within mixed-environmental (metagenomic) samples by comparing them against public databases.
