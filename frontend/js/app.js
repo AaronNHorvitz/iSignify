@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // ---------------------------------------------------
 
         try {
-            const response = await fetch('http://localhost:8000/api/v1/analyze/', {
+            const response = await fetch('https://aaronhhorvitz-isignify.hf.space/api/v1/analyze/', {
                 method: 'POST',
                 body: formData,
             });
