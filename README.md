@@ -196,3 +196,21 @@ This method runs the tests inside the same container environment defined in the 
 ### Acknowledgments
 
 This project's code was developed by Aaron Horvitz, with significant pairing and assistance from Google's Gemini model.
+
+---
+
+## Future Roadmap (Post-Hackathon)
+
+This hackathon project serves as a robust proof-of-concept. The following features are planned to evolve iSignify into a production-ready tool for researchers.
+
+* **Automated PCR Primer Design:**
+    Integrate a bioinformatics engine like Primer3 to automatically design and validate optimal PCR primers for any given signature, complete with data on melting temperatures, GC content, and potential hairpins.
+
+* **Clade-Based Optimization:**
+    To dramatically improve performance for large-scale analyses, a UI and backend logic will be developed to allow users to group background genomes into "clades" (e.g., by genus or family). The analysis will then intelligently compare a target against a single representative from each clade, reducing computation time exponentially.
+
+* **Parallel Processing Engine:**
+    The core signature finding algorithm will be refactored to use Python's `multiprocessing` module. This will allow the analysis to run in parallel across all available CPU cores, providing a significant speedup for large genomes.
+
+* **Metagenomic Analysis Mode:**
+    A future research goal is to develop a new analysis mode capable of identifying novel, unknown organisms within mixed-environmental (metagenomic) samples by comparing them against public databases.
