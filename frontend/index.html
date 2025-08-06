@@ -16,6 +16,7 @@
     <main>
         <form id="analysis-form">
             <h2>Analysis Parameters</h2>
+            <p class="explanation">Select one genome you want to find unique sequences in (the Target) and one or more genomes to compare it against (the Background). The app will find sequences present in the Target but absent from the Background.</p>
             
             <div class="form-group">
                 <label for="kmer-size">k-mer Size:</label>
@@ -37,16 +38,18 @@
 
         <section id="results-container" class="hidden">
             <h2>Analysis Results</h2>
-            <div id="summary">
-                </div>
-            <pre id="signatures-table">
-                </pre>
+            <p class="explanation">Below is the AI-generated summary of the findings, followed by a table of the specific DNA signatures that are unique to your target genome.</p>
+
+            <div id="summary"></div>
+            
+            <button id="download-csv-button" class="hidden">Download Results as CSV</button>
+
+            <pre id="signatures-table"></pre>
         </section>
         
         <div id="loader" class="hidden">
             <p>Analyzing... This may take a moment.</p>
         </div>
-
     </main>
 
     <script src="js/app.js"></script>

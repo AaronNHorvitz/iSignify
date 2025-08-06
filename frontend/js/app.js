@@ -1,85 +1,109 @@
-// Wait for the entire HTML document to be loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Select the important elements from the HTML
+    // Select all elements
     const form = document.getElementById('analysis-form');
     const submitButton = document.getElementById('submit-button');
     const resultsContainer = document.getElementById('results-container');
     const summaryDiv = document.getElementById('summary');
     const signaturesTable = document.getElementById('signatures-table');
     const loader = document.getElementById('loader');
+    const downloadButton = document.getElementById('download-csv-button'); // <-- NEW
 
-    // Add an event listener to the form for when it is submitted
+    // Store results globally to make them accessible for download
+    let currentSignatures = []; // <-- NEW
+
     form.addEventListener('submit', async (event) => {
-        // Prevent the default browser action of reloading the page on submit
         event.preventDefault();
 
-        // Show the loader and hide previous results
+        // Reset state
         loader.classList.remove('hidden');
         resultsContainer.classList.add('hidden');
+        downloadButton.classList.add('hidden'); // <-- NEW
         submitButton.disabled = true;
         submitButton.textContent = 'Analyzing...';
+        currentSignatures = []; // <-- NEW: Clear previous results
 
-        // Create a FormData object to package our form data and files
         const formData = new FormData();
-
-        // Get the values from the form inputs
-        const kmerSize = document.getElementById('kmer-size').value;
-        const targetFile = document.getElementById('target-genome').files[0];
+        formData.append('kmer_size', document.getElementById('kmer-size').value);
+        formData.append('target_genome', document.getElementById('target-genome').files[0]);
         const backgroundFiles = document.getElementById('background-genomes').files;
-
-        // Add the data to our FormData object
-        formData.append('kmer_size', kmerSize);
-        formData.append('target_genome', targetFile);
         for (let i = 0; i < backgroundFiles.length; i++) {
             formData.append('background_genomes', backgroundFiles[i]);
         }
 
         try {
-            // Use the fetch API to send the data to our backend endpoint
             const response = await fetch('http://localhost:8000/api/v1/analyze/', {
                 method: 'POST',
                 body: formData,
             });
 
-            // Check if the response was successful
             if (response.ok) {
                 const data = await response.json();
                 displayResults(data);
             } else {
-                // If the server returned an error, display it
                 const errorData = await response.json();
                 displayError(errorData.detail || 'An unknown error occurred.');
             }
         } catch (error) {
-            // Handle network errors
             displayError('A network error occurred. Is the backend server running?');
             console.error('Error:', error);
         } finally {
-            // Hide the loader and re-enable the button
             loader.classList.add('hidden');
             submitButton.disabled = false;
             submitButton.textContent = 'Find Signatures';
         }
     });
 
-    function displayResults(data) {
-        // Display the AI-generated summary
-        summaryDiv.textContent = data.summary;
+    // --- NEW: Event listener for the download button ---
+    downloadButton.addEventListener('click', () => {
+        if (currentSignatures.length === 0) return;
 
-        // Format the signature data for display
+        // Define CSV headers
+        const headers = ['sequence_id', 'start', 'end', 'length', 'sequence'];
+        let csvContent = headers.join(',') + '\n';
+
+        // Loop through the signature data and add to the CSV string
+        currentSignatures.forEach(sig => {
+            const row = [
+                `"${sig.sequence_id}"`,
+                sig.start,
+                sig.end,
+                sig.length,
+                `"${sig.sequence}"`
+            ];
+            csvContent += row.join(',') + '\n';
+        });
+
+        // Create a downloadable file from the CSV string
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        if (link.download !== undefined) {
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'isignify_results.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
+
+    function displayResults(data) {
+        summaryDiv.textContent = data.summary;
+        
+        currentSignatures = data.signatures || []; // <-- NEW: Store results
+
         let tableContent = 'ID\t\tStart\tEnd\tLength\tSequence\n';
         tableContent += '----------------------------------------------------------\n';
-        if (data.signatures && data.signatures.length > 0) {
-            data.signatures.forEach(sig => {
+        if (currentSignatures.length > 0) {
+            currentSignatures.forEach(sig => {
                 tableContent += `${sig.sequence_id.substring(1, 15)}...\t${sig.start}\t${sig.end}\t${sig.length}\t${sig.sequence.substring(0, 20)}...\n`;
             });
+            downloadButton.classList.remove('hidden'); // <-- NEW: Show download button
         } else {
             tableContent += 'No unique signatures found.';
         }
         signaturesTable.textContent = tableContent;
-
-        // Show the results container
         resultsContainer.classList.remove('hidden');
     }
 
