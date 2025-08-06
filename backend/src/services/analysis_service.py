@@ -16,21 +16,32 @@ class AnalysisService:
     """
 
     def _generate_ai_summary(self, signature_count: int, kmer_size: int) -> str:
-        """
-        Generates a human-readable summary using the Gemma model.
-        """
-        try:
-            model_name = "google/gemma-2b"
-            dtype = torch.bfloat16
-            tokenizer = AutoTokenizer.from_pretrained(model_name)
-            model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=dtype)
-            prompt = f"You are a helpful bioinformatics assistant. Briefly summarize the following analysis result in a single, encouraging sentence. The analysis found {signature_count} unique DNA signatures using a k-mer size of {kmer_size}."
-            input_ids = tokenizer(prompt, return_tensors="pt")
-            response = model.generate(**input_ids, max_new_tokens=50)
-            summary = tokenizer.decode(response[0], skip_special_tokens=True)
-            return summary[len(prompt):].strip()
-        except Exception as e:
-            return f"Analysis complete. Found {signature_count} unique signature(s) using a k-mer size of {kmer_size}. AI summary failed: {str(e)}"
+            """
+            Generates a human-readable summary using the Gemma model.
+            """
+            try:
+                model_name = "google/gemma-2b"
+                dtype = torch.bfloat16
+                tokenizer = AutoTokenizer.from_pretrained(model_name)
+                model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=dtype)
+                prompt = f"You are a helpful bioinformatics assistant. Briefly summarize the following analysis result in a single, encouraging sentence. The analysis found {signature_count} unique DNA signatures using a k-mer size of {kmer_size}."
+                input_ids = tokenizer(prompt, return_tensors="pt")
+                response = model.generate(**input_ids, max_new_tokens=50)
+                summary = tokenizer.decode(response[0], skip_special_tokens=True)
+                
+                # --- UPDATED PART ---
+                # Remove the original prompt from the model's output
+                raw_output = summary[len(prompt):]
+                
+                # Find "Answer:" and take only the text that comes after it.
+                # The .split() method is a robust way to handle this.
+                clean_summary = raw_output.split("Answer:", 1)[-1]
+                
+                return clean_summary.strip()
+                # --------------------
+
+            except Exception as e:
+                return f"Analysis complete. Found {signature_count} unique signature(s) using a k-mer size of {kmer_size}. AI summary failed: {str(e)}"
 
 
     def run_analysis(self, target_file: IO, background_files: List[IO], kmer_size: int) -> AnalysisResult:
