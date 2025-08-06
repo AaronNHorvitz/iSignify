@@ -44,67 +44,66 @@ class AnalysisService:
                 return f"Analysis complete. Found {signature_count} unique signature(s) using a k-mer size of {kmer_size}. AI summary failed: {str(e)}"
 
 
-    def run_analysis(self, target_file: IO, background_files: List[IO], kmer_size: int) -> AnalysisResult:
-        """
-        Executes the full signature analysis pipeline, including pre-processing.
-        """
-        parser = SequenceParser()
-        finder = SignatureFinder(kmer_size=kmer_size)
-        preprocessor = FastaPreprocessor()
+    def run_analysis(self, target_file: IO, background_files: List[IO], kmer_size: int, run_preprocessor: bool) -> AnalysisResult: # <-- NEW PARAMETER
+            """
+            Executes the full signature analysis pipeline, including optional pre-processing.
+            """
+            parser = SequenceParser()
+            finder = SignatureFinder(kmer_size=kmer_size)
+            preprocessor = FastaPreprocessor()
 
-        # Keep track of all temporary files that need to be cleaned up
-        temp_files_to_clean = []
-
-        try:
-            # Save uploaded target file to a temporary path
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".fna") as tmp_target:
-                tmp_target.write(target_file.read())
-                temp_files_to_clean.append(tmp_target.name)
+            temp_files_to_clean = []
+            try:
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".fna") as tmp_target:
+                    tmp_target.write(target_file.read())
+                    tmp_target_path = tmp_target.name
+                    temp_files_to_clean.append(tmp_target_path)
                 
-                # --- Run pre-processing on the target file ---
-                processed_target_path = preprocessor.process_file(tmp_target.name)
-                if processed_target_path != tmp_target.name:
-                    temp_files_to_clean.append(processed_target_path)
+                # --- UPDATED: Conditional Pre-processing ---
+                if run_preprocessor:
+                    processed_target_path = preprocessor.process_file(tmp_target_path)
+                    if processed_target_path != tmp_target_path:
+                        temp_files_to_clean.append(processed_target_path)
+                else:
+                    processed_target_path = tmp_target_path
+                # -------------------------------------------
 
-            # Save uploaded background files to temporary paths
-            background_paths = []
-            for bg_file in background_files:
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".fna") as tmp_bg:
-                    tmp_bg.write(bg_file.read())
-                    temp_files_to_clean.append(tmp_bg.name)
-                    background_paths.append(tmp_bg.name)
+                background_paths = []
+                for bg_file in background_files:
+                    with tempfile.NamedTemporaryFile(delete=False, suffix=".fna") as tmp_bg:
+                        tmp_bg.write(bg_file.read())
+                        temp_files_to_clean.append(tmp_bg.name)
+                        background_paths.append(tmp_bg.name)
+                
+                # --- UPDATED: Conditional Pre-processing ---
+                if run_preprocessor:
+                    processed_background_paths = [preprocessor.process_file(p) for p in background_paths]
+                    for p in processed_background_paths:
+                        if p not in background_paths:
+                            temp_files_to_clean.append(p)
+                else:
+                    processed_background_paths = background_paths
+                # -------------------------------------------
 
-            # --- Run pre-processing on all background files ---
-            processed_background_paths = [preprocessor.process_file(p) for p in background_paths]
-            for p in processed_background_paths:
-                if p not in background_paths:
-                    temp_files_to_clean.append(p)
+                target_sequences = parser.parse(processed_target_path)
+                background_sequences = {}
+                for path in processed_background_paths:
+                    background_sequences.update(parser.parse(path))
 
-            # Step 1: Parse all the PROCESSED sequence files
-            target_sequences = parser.parse(processed_target_path)
-            
-            background_sequences = {}
-            for path in processed_background_paths:
-                background_sequences.update(parser.parse(path))
+                found_signatures = finder.find_unique_signatures(
+                    target_sequences=target_sequences,
+                    background_sequences=background_sequences
+                )
 
-            # Step 2: Run the core signature finding logic
-            found_signatures = finder.find_unique_signatures(
-                target_sequences=target_sequences,
-                background_sequences=background_sequences
-            )
+                summary = self._generate_ai_summary(len(found_signatures), kmer_size)
 
-            # Step 3: Generate AI summary
-            summary = self._generate_ai_summary(len(found_signatures), kmer_size)
+                result = AnalysisResult(
+                    summary=summary,
+                    signatures=[Signature(**sig) for sig in found_signatures]
+                )
+            finally:
+                for path in temp_files_to_clean:
+                    if os.path.exists(path):
+                        os.remove(path)
 
-            # Step 4: Format the results
-            result = AnalysisResult(
-                summary=summary,
-                signatures=[Signature(**sig) for sig in found_signatures]
-            )
-        finally:
-            # Clean up ALL temporary files
-            for path in temp_files_to_clean:
-                if os.path.exists(path):
-                    os.remove(path)
-
-        return result
+            return result
