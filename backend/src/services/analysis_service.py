@@ -6,6 +6,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from src.core.sequence_parser import SequenceParser
 from src.core.signature_finder import SignatureFinder
+from src.core.preprocessor import FastaPreprocessor # <-- NEW IMPORT
 from src.models.schemas import AnalysisResult, Signature
 
 class AnalysisService:
@@ -17,37 +18,18 @@ class AnalysisService:
     def _generate_ai_summary(self, signature_count: int, kmer_size: int) -> str:
         """
         Generates a human-readable summary using the Gemma model.
-        
-        Note: For a production app, the model would be loaded once at startup,
-        not on every API call. This is simplified for the hackathon.
         """
         try:
-            # Use a smaller, faster version of Gemma for the hackathon
             model_name = "google/gemma-2b"
-            
-            # For CPU execution, specify the data type for better performance
             dtype = torch.bfloat16
-
             tokenizer = AutoTokenizer.from_pretrained(model_name)
-            model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                torch_dtype=dtype,
-            )
-
-            # Create a clear prompt for the model
+            model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=dtype)
             prompt = f"You are a helpful bioinformatics assistant. Briefly summarize the following analysis result in a single, encouraging sentence. The analysis found {signature_count} unique DNA signatures using a k-mer size of {kmer_size}."
-
             input_ids = tokenizer(prompt, return_tensors="pt")
-
-            # Generate the response
             response = model.generate(**input_ids, max_new_tokens=50)
             summary = tokenizer.decode(response[0], skip_special_tokens=True)
-            
-            # The model output includes the prompt, so we remove it.
             return summary[len(prompt):].strip()
-
         except Exception as e:
-            # If the AI model fails, return a simple, default summary
             return f"Analysis complete. Found {signature_count} unique signature(s) using a k-mer size of {kmer_size}. AI summary failed: {str(e)}"
 
 
@@ -57,39 +39,63 @@ class AnalysisService:
         """
         parser = SequenceParser()
         finder = SignatureFinder(kmer_size=kmer_size)
-        
-        with tempfile.NamedTemporaryFile(delete=False) as tmp_target:
-            tmp_target.write(target_file.read())
-            tmp_target_path = tmp_target.name
-        
-        background_paths = []
-        for bg_file in background_files:
-            with tempfile.NamedTemporaryFile(delete=False) as tmp_bg:
-                tmp_bg.write(bg_file.read())
-                background_paths.append(tmp_bg.name)
+        preprocessor = FastaPreprocessor() # <-- NEW: Instantiate preprocessor
+
+        # Keep track of all temporary files that need to be cleaned up
+        temp_files_to_clean = []
 
         try:
-            target_sequences = parser.parse(tmp_target_path)
+            # Save uploaded target file to a temporary path
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".fna") as tmp_target:
+                tmp_target.write(target_file.read())
+                temp_files_to_clean.append(tmp_target.name)
+                
+                # --- NEW: Run pre-processing on the target file ---
+                processed_target_path = preprocessor.process_file(tmp_target.name)
+                if processed_target_path != tmp_target.name:
+                    temp_files_to_clean.append(processed_target_path)
+                # ---------------------------------------------------
+
+            # Save uploaded background files to temporary paths
+            background_paths = []
+            for bg_file in background_files:
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".fna") as tmp_bg:
+                    tmp_bg.write(bg_file.read())
+                    temp_files_to_clean.append(tmp_bg.name)
+                    background_paths.append(tmp_bg.name)
+
+            # --- NEW: Run pre-processing on all background files ---
+            processed_background_paths = [preprocessor.process_file(p) for p in background_paths]
+            for p in processed_background_paths:
+                if p not in background_paths:
+                    temp_files_to_clean.append(p)
+            # -----------------------------------------------------
+
+            # Step 1: Parse all the PROCESSED sequence files
+            target_sequences = parser.parse(processed_target_path)
+            
             background_sequences = {}
-            for path in background_paths:
+            for path in processed_background_paths:
                 background_sequences.update(parser.parse(path))
 
+            # Step 2: Run the core signature finding logic
             found_signatures = finder.find_unique_signatures(
                 target_sequences=target_sequences,
                 background_sequences=background_sequences
             )
 
-            # *** THIS IS THE NEW PART ***
-            # Replace the placeholder with a real call to the Gemma model.
+            # Step 3: Generate AI summary
             summary = self._generate_ai_summary(len(found_signatures), kmer_size)
 
+            # Step 4: Format the results
             result = AnalysisResult(
                 summary=summary,
                 signatures=[Signature(**sig) for sig in found_signatures]
             )
         finally:
-            os.remove(tmp_target_path)
-            for path in background_paths:
-                os.remove(path)
+            # Clean up ALL temporary files
+            for path in temp_files_to_clean:
+                if os.path.exists(path):
+                    os.remove(path)
 
         return result
