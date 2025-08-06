@@ -11,3 +11,6 @@ torch
 transformers
 accelerate
 bitsandbytes
+
+# Bioinformatics Tools
+biopython
