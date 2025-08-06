@@ -17,5 +17,4 @@ COPY ./backend/src /code/src
 EXPOSE 8000
 
 # Stage 7: Define the command to run the application using uvicorn
-# Note that we now refer to the main module as "src.main"
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]

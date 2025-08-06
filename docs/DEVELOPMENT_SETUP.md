@@ -79,3 +79,35 @@ To enable the AI summary feature, you need to authenticate with the Hugging Face
     - Paste your access token when prompted and press Enter.
 
 Once you are logged in, the application will be able to download the Gemma model and generate AI summaries.    
+
+---
+
+### Linux-Specific: Fixing Docker Permission Errors
+
+When running Docker on Linux for the first time, you may encounter a `permission denied` error when trying to connect to the Docker daemon socket. This means your user account doesn't have the rights to run Docker commands.
+
+You have two options to fix this:
+
+**Option 1: The Quick Fix (Prefix with `sudo`)**
+
+You can run all docker commands with `sudo`. This is a quick workaround.
+
+```bash
+sudo docker build -t isignify-app .
+sudo docker run -p 8000:8000 isignify-app
+```
+
+**Option 2: The Permanent Fix (Recommended)**
+
+Add your user to the `docker` group to grant the necessary permissions. You only need to do this once.
+
+1. Run the command to add your user to the group:
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+2. **Log out of your system and log back in** for this change to take full effect.
+
+After logging back in, you will be able to run all docker commands without sudo.
+After you've updated the documentation, which fix would you like to use to solve the permission error on your machine? The quick `sudo` fix, or the permanent `usermod` fix?
