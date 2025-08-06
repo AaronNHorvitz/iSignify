@@ -6,7 +6,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from src.core.sequence_parser import SequenceParser
 from src.core.signature_finder import SignatureFinder
-from src.core.preprocessor import FastaPreprocessor # <-- NEW IMPORT
+from src.core.preprocessor import FastaPreprocessor
 from src.models.schemas import AnalysisResult, Signature
 
 class AnalysisService:
@@ -39,7 +39,7 @@ class AnalysisService:
         """
         parser = SequenceParser()
         finder = SignatureFinder(kmer_size=kmer_size)
-        preprocessor = FastaPreprocessor() # <-- NEW: Instantiate preprocessor
+        preprocessor = FastaPreprocessor()
 
         # Keep track of all temporary files that need to be cleaned up
         temp_files_to_clean = []
@@ -50,11 +50,10 @@ class AnalysisService:
                 tmp_target.write(target_file.read())
                 temp_files_to_clean.append(tmp_target.name)
                 
-                # --- NEW: Run pre-processing on the target file ---
+                # --- Run pre-processing on the target file ---
                 processed_target_path = preprocessor.process_file(tmp_target.name)
                 if processed_target_path != tmp_target.name:
                     temp_files_to_clean.append(processed_target_path)
-                # ---------------------------------------------------
 
             # Save uploaded background files to temporary paths
             background_paths = []
@@ -64,12 +63,11 @@ class AnalysisService:
                     temp_files_to_clean.append(tmp_bg.name)
                     background_paths.append(tmp_bg.name)
 
-            # --- NEW: Run pre-processing on all background files ---
+            # --- Run pre-processing on all background files ---
             processed_background_paths = [preprocessor.process_file(p) for p in background_paths]
             for p in processed_background_paths:
                 if p not in background_paths:
                     temp_files_to_clean.append(p)
-            # -----------------------------------------------------
 
             # Step 1: Parse all the PROCESSED sequence files
             target_sequences = parser.parse(processed_target_path)
