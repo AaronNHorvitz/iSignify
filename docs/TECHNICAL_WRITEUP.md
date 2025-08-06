@@ -10,6 +10,17 @@
 
 ---
 
+### Quick Links
+
+* **Live Demo Application:** **[https://fanciful-youtiao-87cf94.netlify.app/](https://fanciful-youtiao-87cf94.netlify.app/)**
+* **Main GitHub Repository (README):** **[https://github.com/AaronNHorvitz/iSignify](https://github.com/AaronNHorvitz/iSignify)**
+* **Sample Data Files:**
+    * [**Sample\_Target\_Genome.fna**](https://github.com/AaronNHorvitz/iSignify/blob/main/sample_data/Sample_Target_B_amyloliquefaciens.fna)
+    * [**Sample\_Background\_1.fna**](https://github.com/AaronNHorvitz/iSignify/blob/main/sample_data/Sample_Background_B_licheniformis.fna)
+
+
+---
+
 ## 1. Abstract
 
 Identifying unique DNA sequences that definitively mark a specific microorganism is a foundational challenge in modern biology. This process is computationally intensive and has traditionally been inaccessible to researchers without specialized bioinformatics training. iSignify is a rapid, AI-powered, and privacy-respecting application designed to solve this problem. By integrating an efficient on-the-fly comparison algorithm with the interpretive power of Google's Gemma model, iSignify empowers any scientist to discover unique DNA signatures in minutes, dramatically accelerating research in diagnostics, biosecurity, and environmental health.
@@ -55,7 +66,7 @@ iSignify is a full-stack web application designed with a clean separation of con
 
 ### Architectural Overview
 
-The project is organized into distinct components, as detailed in our [**File Architecture Guide**](docs/FILE_ARCHITECTURE.md).
+The project is organized into distinct components, as detailed in our [**File Architecture Guide**](https://github.com/AaronNHorvitz/iSignify/blob/main/docs/FILE_ARCHITECTURE.md).
 
 * **Frontend:** A simple, static web interface built with HTML, CSS, and JavaScript that allows users to upload files and view results. It communicates with the backend via a REST API.
 * **Backend API (`FastAPI`):** A robust API layer that handles file uploads, validates inputs, and orchestrates the analysis by calling the service layer.
@@ -71,7 +82,7 @@ The project is organized into distinct components, as detailed in our [**File Ar
 
 A key technical challenge in bioinformatics is handling the variability of input data. Draft genomes are often delivered in a "multi-FASTA" format, where a single genome is split into many separate sequences (contigs). Our application was designed to handle this complexity automatically.
 
-As detailed in our [**FASTA Preparation Guide**](docs/FASTA_PROCESSING_INSTRUCTIONS.md) (authored by our Subject Matter Expert, Charles Greenwald, PhD), our `FastaPreprocessor` module uses the `Biopython` library to automatically detect and merge these multi-contig files, inserting a standardized spacer of 100 'N's between each contig. This creates a single, continuous sequence that is compatible with our analysis engine. This automated step is a critical feature that significantly improves the application's usability for researchers.
+As detailed in our [**FASTA Preparation Guide**](https://github.com/AaronNHorvitz/iSignify/blob/main/docs/DATA_PREPARATION_GUIDE.md) (authored by our Subject Matter Expert, Charles Greenwald, PhD), our `FastaPreprocessor` module uses the `Biopython` library to automatically detect and merge these multi-contig files, inserting a standardized spacer of 100 'N's between each contig. This creates a single, continuous sequence that is compatible with our analysis engine. This automated step is a critical feature that significantly improves the application's usability for researchers.
 
 ---
 
