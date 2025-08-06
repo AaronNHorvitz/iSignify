@@ -213,3 +213,9 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.logo {
+    max-width: 250px; /* You can adjust this size if you want */
+    margin: 0 auto 15px; /* Centers the logo and adds some space below it */
+    display: block;
+}
