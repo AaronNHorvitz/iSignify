@@ -60,6 +60,7 @@ iSignify/
 │
 ├── docs/
 │   ├── DEVELOPMENT_SETUP.md
+│   ├── FASTA_Processing_instructions.md
 │   ├── insignia_2009_paper.pdf
 │   └── prd.md
 │
