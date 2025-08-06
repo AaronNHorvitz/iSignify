@@ -4,7 +4,7 @@
 
 **Team:**
 * **Charles Greenwald, PhD, MBA** - *Subject Matter Expert*
-* **Aaron Horvitz** - *Developer & Data Scientist*
+* **Aaron Horvitz, M.S.** - *Developer & Data Scientist*
 
 **Project for the Google - The Gemma 3n Impact Challenge**
 
