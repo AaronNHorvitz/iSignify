@@ -1,5 +1,3 @@
-How about these updates to the README.md file:
-
 # Microbial Signature Identification App (iSignify)
 
 This project is a local, privacy-respecting application that identifies unique DNA signatures from microbial genomes. It compares a target genome against a background set and uses the Gemma 3n model to provide human-readable summaries of the results.
