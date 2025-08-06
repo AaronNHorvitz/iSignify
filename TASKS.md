@@ -53,5 +53,5 @@ This document tracks the detailed tasks for the project. Check off items as they
 - [x] **Task 5.1:** Write the technical paper and add it to `docs/`.
 - [x] **Task 5.2:** Create the iSignify log and take a screenshot.
 - [x] **Task 5.3:** Take screenshots of the existing app. 
-- [ ] **Task 5.4:** SME (Charles) Record and edit a compelling video demonstration.
-- [ ] **Task 5.5:** Submit all materials to the Kaggle hackathon.
+- [x] **Task 5.4:** SME (Charles) Record and edit a compelling video demonstration.
+- [x] **Task 5.5:** Submit all materials to the Kaggle hackathon.
