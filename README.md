@@ -61,8 +61,8 @@ iSignify/
 ├── docs/
 │   ├── DEVELOPMENT_SETUP.md
 │   ├── FASTA_PROCESSING_INSTRUCTIONS.md
-│   ├── insignia_2009_paper.pdf
-│   └── prd.md
+│   ├── PRD.md
+│   └── insignia_2009_paper.pdf
 │
 ├── frontend/
 │   ├── index.html
