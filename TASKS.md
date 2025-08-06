@@ -1,4 +1,3 @@
-Here is the existing task list. Let's add them in addition the UI changes were were going to make, and let's get this started. 
 # Project Tasks & Checklist
 
 This document tracks the detailed tasks for the project. Check off items as they are completed.
@@ -36,12 +35,15 @@ This document tracks the detailed tasks for the project. Check off items as they
 - [x] **Task 4.1:** Integrate the Gemma model into the `AnalysisService`.
 - [ ] **Task 4.2:** Implement Automated FASTA Pre-processing:
     - [x] **4.2.1:** Add `biopython` to `requirements.txt` and install.
-    - [x] **4.2.2:** Implement merging logic from the guide in a new `preprocessor.py` module.
+    - [x] **4.2.2:** Implement merging logic in a new `preprocessor.py` module.
     - [ ] **4.2.3:** Refactor `AnalysisService` to use the new pre-processor.
-    - [ ] **4.2.4:** Write unit tests for the pre-processor.
-- [ ] **Task 4.3:** Finalize `Dockerfile` & Deploy Backend to Google Cloud Run.
-- [ ] **Task 4.4:** Make final UI/CSS adjustments (Explanations, CSV Download, LLM Window).
-- [ ] **Task 4.5:** Conduct final review with SME (Charles).
+    - [x] **4.2.4:** Write and pass unit tests for the pre-processor.
+- [ ] **Task 4.3:** Make final UI/CSS adjustments:
+    - [ ] **4.3.1:** Add explanatory text to the UI to guide users/judges.
+    - [ ] **4.3.2:** Implement a "Download as CSV" button for the results table.
+    - [ ] **4.3.3:** Adjust CSS to make the LLM summary window larger and scrollable.
+- [ ] **Task 4.4:** Conduct final review with SME (Charles).
+- [ ] **Task 4.5:** Finalize `Dockerfile` & Deploy Backend to Google Cloud Run.
 
 ---
 ## Phase 5: Submission
