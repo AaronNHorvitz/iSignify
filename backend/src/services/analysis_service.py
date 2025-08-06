@@ -35,7 +35,7 @@ class AnalysisService:
 
     def run_analysis(self, target_file: IO, background_files: List[IO], kmer_size: int) -> AnalysisResult:
         """
-        Executes the full signature analysis pipeline.
+        Executes the full signature analysis pipeline, including pre-processing.
         """
         parser = SequenceParser()
         finder = SignatureFinder(kmer_size=kmer_size)
