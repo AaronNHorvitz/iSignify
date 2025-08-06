@@ -1,3 +1,4 @@
+Here is the existing task list. Let's add them in addition the UI changes were were going to make, and let's get this started. 
 # Project Tasks & Checklist
 
 This document tracks the detailed tasks for the project. Check off items as they are completed.
@@ -33,14 +34,18 @@ This document tracks the detailed tasks for the project. Check off items as they
 ## Phase 4: Finalization & Deployment
 
 - [x] **Task 4.1:** Integrate the Gemma model into the `AnalysisService`.
-- [ ] **Task 4.2:** Finalize and test the `Dockerfile`, then deploy the backend to **Google Cloud Run** to create a public API link.
-- [ ] **Task 4.3:** Make final UI/CSS adjustments based on a full end-to-end test.
-- [ ] **Task 4.4:** Conduct a final review with the SME (Charles) to get feedback before creating the submission video.
+- [ ] **Task 4.2:** Implement Automated FASTA Pre-processing:
+    - [ ] **4.2.1:** Add `biopython` to `requirements.txt` and install.
+    - [ ] **4.2.2:** Implement merging logic from the guide in a new `preprocessor.py` module.
+    - [ ] **4.2.3:** Refactor `AnalysisService` to use the new pre-processor.
+    - [ ] **4.2.4:** Write unit tests for the pre-processor.
+- [ ] **Task 4.3:** Finalize `Dockerfile` & Deploy Backend to Google Cloud Run.
+- [ ] **Task 4.4:** Make final UI/CSS adjustments (Explanations, CSV Download, LLM Window).
+- [ ] **Task 4.5:** Conduct final review with SME (Charles).
 
 ---
-
 ## Phase 5: Submission
 
-- [ ] **Task 5.1:** Write the technical paper/blog post and add it to the `docs/` folder.
-- [ ] **Task 5.2:** Record and edit a compelling video demonstration (3 minutes or less).
-- [ ] **Task 5.3:** Submit all materials (video link, writeup, code repository, and live demo link).
+- [ ] **Task 5.1:** Write the technical paper and add it to `docs/`.
+- [ ] **Task 5.2:** Record and edit a compelling video demonstration.
+- [ ] **Task 5.3:** Submit all materials to the Kaggle hackathon.
