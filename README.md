@@ -30,7 +30,8 @@ The project will be executed in several key phases. For a detailed, actionable c
 iSignify/
 │
 |── data/
-│   └── FASTA_files
+│   ├── FASTA_files
+│   └── Processed_FASTA_files
 |
 ├── backend/
 │   ├── src/
