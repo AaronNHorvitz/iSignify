@@ -51,6 +51,8 @@ iSignify/
 │
 ├── frontend/
 │   ├── index.html
+|   ├── images/
+│   |   └── iSignify_Logo_Long.png
 │   ├── css/
 │   │   └── style.css
 │   └── js/
