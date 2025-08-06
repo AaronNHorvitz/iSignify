@@ -76,4 +76,3 @@ This project's code was developed by Aaron Horvitz, with significant pairing and
 ## Future Roadmap
 
 This hackathon project serves as a robust proof-of-concept. Key planned features to evolve iSignify into a production-ready tool include **Automated PCR Primer Design**, **Clade-Based Optimization** for massive scalability, a **Parallel Processing Engine**, and a **Metagenomic Analysis Mode**.
-
