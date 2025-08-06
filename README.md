@@ -76,7 +76,7 @@ To make testing easy, we've provided small sample genome files directly in this 
     * Vice President, Global Biological Platform at NCH Corporation. 
     * PhD in Genetics, Texas A&M University 
 
-* **Aaron Horvitz** - *Developer & Data Scientist* 
+* **Aaron Horvitz, M.S.** - *Developer & Data Scientist* 
     * Statistician (Data Scientist) at RAAS (Research Analytics and Applied Statistics) at the Internal Revenue Service 
     * MS Analytics, Texas A&M University 
     * MS Statistical Data Science, Texas A&M University (In Progress) 
