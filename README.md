@@ -54,6 +54,7 @@ iSignify/
 │   │
 │   └── tests/
 │       ├── __init__.py
+│       ├── test_preprocessor.py
 │       ├── test_sequence_parser.py
 │       └── test_signature_finder.py
 │
